@@ -12,6 +12,13 @@ export const SingIn = () => {
 
     const { auth } = useAuth()
 
+    useEffect(() => {
+        console.log('xd');
+        fetch(`${process.env.REACT_APP_API_URL}/get_users/lopez`)
+        .then(response => response.json())
+        .then(response => console.log(response))
+    },[])
+
     return (
         <>
             <main>
