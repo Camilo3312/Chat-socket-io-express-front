@@ -1,0 +1,9 @@
+.delimit_main {
+    max-width: var(--max-width-modules);
+    /* max-height: 100vh; */
+    margin: auto;
+    padding: 20px;
+    
+    display: flex;
+    gap: 20px;
+}

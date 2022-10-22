@@ -1,0 +1,27 @@
+.center_main {
+    max-width: var(--max-width-modules);
+    height: 100vh;
+    margin: auto;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.login {
+    padding: 20px;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.subtitle {
+    font-weight: 700;
+    font-size: 25px;
+    color: #292929;
+}
+
+.info {
+    font-size: 12px;
+    color: #878991;
+}

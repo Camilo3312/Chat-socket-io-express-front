@@ -1,0 +1,35 @@
+.message_card {
+    position: relative;
+    padding: 14px;
+    border-radius: 15px;
+    background: #4f7ef5;
+    color: #FFFF;
+    max-width: 500px;
+
+    display: flex;
+    flex-direction: column;
+    gap: 3px;
+}
+/* 
+.message_card::before {
+    content: '';
+    position: absolute;
+    border-left: 25px solid transparent;
+	border-bottom: 25px solid #ebebeb; 
+    transform: rotate(270deg) ;
+    top: 0;
+    left: -14px;
+} */
+
+.message {
+    font-size: 14px;
+    /* color: #010e69; */
+}
+
+.date_card {
+    display: flex;
+}
+
+.date_message {
+    font-size: 10px;
+}
