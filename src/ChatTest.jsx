@@ -29,10 +29,11 @@ export const ChatTest = () => {
     const { messages, setMessages, chats, disconnect, connect, roomConnect, sendMessage } = useChat()
     const chatRef = useRef()
     const { data: users, loading, get, setData_ } = useFetch()
+    const { data: response, loading: loading_chat, post } = useFetch()
 
     useEffect(() => {
         get(`${process.env.REACT_APP_API_URL}/get_users/${username}`)
-        !username && setData_(null) 
+        !username && setData_(null)
         !username && setUsername('%$&()/!?')
         // console.log(users);
     }, [username])
@@ -56,6 +57,10 @@ export const ChatTest = () => {
         const opciones = { hour: 'numeric', minute: 'numeric', weekday: 'long', year: 'numeric', month: 'short' };
         return date.toLocaleDateString('es-ES', opciones)
     }
+
+
+
+    // https://chat-socket-io-express.onrender.com
 
     return (
         <main className='main_chat'>
@@ -91,30 +96,35 @@ export const ChatTest = () => {
                             </form>
                         </div>
 
-                      
-                                <div className={`search_results ${users && 'show_results'}`}>
-                                    {
-                                        users?.length < 1 ?
-                                        <p>Not found :(</p>
-                                        :
-                                        users?.map(item => (
-                                            <div className="card_users">
-                                                <img className='image_profile_search_user' src={item.image_profile} alt="" />
-                                                <p>{item.username}</p>
-                                            </div>
-                                        ))
-                                    }
-            
-                                </div>
-                         
-                        
+
+                        <div className={`search_results ${users && 'show_results'}`}>
+                            {
+                                users?.length < 1 ?
+                                    <p>Not found :(</p>
+                                    :
+                                    users?.map(item => (
+                                        <div className="card_users" onClick={() => {
+                                            post(`${process.env.REACT_APP_API_URL}/new_chat`, { of_id_user: data.id_user, for_id_user: item.id_user })
+
+                                            setData_(null)
+                                        }}>
+                                            <img className='image_profile_search_user' src={item.image_profile} alt="" />
+                                            <p>{item.username}</p>
+                                        </div>
+                                    ))
+                            }
+
+                        </div>
+
+
 
                     </BoxShadow>
 
-                        {
-                            !users && 
-                            <>
-                                {
+                    {
+                        !users &&
+                        <>
+                            {
+                                chats.length > 0 ?
                                     chats.map((item, index) => (
                                         <div className="test" key={index} onClick={() => {
                                             roomConnect(item.id_room)
@@ -124,16 +134,18 @@ export const ChatTest = () => {
                                         }}>
                                             <ChatCard information={
                                                 {
-                                                    ...item, 
+                                                    ...item,
                                                     is_new_message: item.id_user !== data.is_user ? true : false
                                                 }
                                             } />
                                         </div>
                                     ))
-                                }
-                            </>
-                        }
-                
+                                    :
+                                    <p>Burcar amigos</p>
+                            }
+                        </>
+                    }
+
                 </div>
 
                 <BoxShadow className="messages">
@@ -223,10 +235,8 @@ export const ChatTest = () => {
                             {/* <p className='title_information'>Chat Socket.io Express</p> */}
                         </div>
                     }
-
                 </BoxShadow>
             </section>
-
         </main>
     )
 }

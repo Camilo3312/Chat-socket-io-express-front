@@ -34,6 +34,18 @@ export const useFetch = (url = null) => {
         return response.data      
     }
 
+    const post = async (url_, data) => {    
+        setLoading(true) 
+        const response = await axios.post(url_, data)
+            .then(response => {
+                console.log(response.data)
+                setData(response.data)
+            })    
+            .finally(() => setLoading(false))
+        // console.log(response.data);
+        return response.data      
+    }
+
     const setData_ = (data) => {
         setData(data)
     }
@@ -43,6 +55,7 @@ export const useFetch = (url = null) => {
         loading,
         error,
         get,
+        post,
         setData_
     }
 }

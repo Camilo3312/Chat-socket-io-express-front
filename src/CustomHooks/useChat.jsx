@@ -8,7 +8,7 @@ const socket = io(process.env.REACT_APP_API_URL)
 
 export const useChat = () => {
     const { id_user, isauth } = useContext(UserContext)
-    const { data: initial_messages, get } = useFetch()
+    // const { data: initial_messages, get } = useFetch()
     
     const [messages, setMessages] = useState(null)
     const [chats, setChats] = useState([])
