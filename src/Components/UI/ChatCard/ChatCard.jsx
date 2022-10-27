@@ -30,9 +30,10 @@ export const ChatCard = ({ information }) => {
                 </div>
                 <div className="date_last_connected">
                     <p className='last_connected'>{information.date_message}</p>
-                    <div className="unread_messages">
+                    {/* <div className="unread_messages">
                         <p className='value_unread_messages'>4</p>
-                    </div>
+                    </div> */}
+                    <p>New</p>
                 </div>
             </div>
         </BoxShadow>

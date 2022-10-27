@@ -120,18 +120,20 @@ export const ChatTest = () => {
 
                     </BoxShadow>
 
+                    <div className="my_chats">
+
                     {
                         !users &&
                         <>
                             {
                                 chats.length > 0 ?
-                                    chats.map((item, index) => (
-                                        <div className="test" key={index} onClick={() => {
-                                            roomConnect(item.id_room)
-                                            setCurrentChat(item)
-                                            setCurrentInedx(index)
-                                            // console.log(item);
-                                        }}>
+                                chats.map((item, index) => (
+                                    <div className="test" key={index} onClick={() => {
+                                        roomConnect(item.id_room)
+                                        setCurrentChat(item)
+                                        setCurrentInedx(index)
+                                        // console.log(item);
+                                    }}>
                                             <ChatCard information={
                                                 {
                                                     ...item,
@@ -142,10 +144,11 @@ export const ChatTest = () => {
                                     ))
                                     :
                                     <p>Burcar amigos</p>
-                            }
+                                }
                         </>
                     }
 
+                    </div>
                 </div>
 
                 <BoxShadow className="messages">
