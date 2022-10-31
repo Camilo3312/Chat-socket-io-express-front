@@ -9,8 +9,8 @@ const socket = io(process.env.REACT_APP_API_URL)
 export const useChat = () => {
     const { id_user, isauth } = useContext(UserContext)
     // const { data: initial_messages, get } = useFetch()
-    
-    const [messages, setMessages] = useState(null)
+
+    const [messages, setMessages] = useState([])
     const [chats, setChats] = useState([])
 
     const render_chats = () => {
@@ -37,15 +37,15 @@ export const useChat = () => {
         const new_message = () => {
             render_chats()
         }
-        
-        socket.on('chats', reciveChats)        
+
+        socket.on('chats', reciveChats)
         socket.on('message', reciveMessage)
         socket.on('new_message', new_message)
         render_chats()
-        
+
         return () => {
             socket.off('message', reciveMessage)
-            socket.off('chats', reciveChats)     
+            socket.off('chats', reciveChats)
             socket.off('new_message', new_message)
         }
     }, [messages])
@@ -54,10 +54,9 @@ export const useChat = () => {
     const getMessages = async (currentRoom) => {
         const response = await axios.get(`${process.env.REACT_APP_API_URL}/get_messages/${currentRoom}`)
         .then(response => {
-            console.log(response.data)
+            // console.log(response.data)
             setMessages(response.data)
         })    
-       
     }
 
     const sendMessage = (message, date, room) => {
@@ -65,11 +64,28 @@ export const useChat = () => {
         render_chats()
     }
 
+    const update = async (data) => {
+        const response = await axios.post(`${process.env.REACT_APP_API_URL}/new_chat`, data)
+            .then(response => {
+                // console.log(response.data)
+                // setMessages(response.data)
+                socket.emit('update')
+                render_chats()
+                return response.data
+            })
+
+        return response
+    }
+
     const roomConnect = (room) => {
         socket.emit('connectRoom', room)
         getMessages(room)
     }
-    
+
+    const updateCurrenChat = (setCurrentChat) => {
+        
+    }
+
     const connect = () => {
         socket.emit('userconnection', id_user)
     }
@@ -81,10 +97,12 @@ export const useChat = () => {
     return {
         messages,
         chats,
+        setChats,
         sendMessage,
         roomConnect,
         connect,
         setMessages,
-        disconnect
+        disconnect,
+        update
     }
 }

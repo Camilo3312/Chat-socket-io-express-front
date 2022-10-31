@@ -9,7 +9,7 @@
 
 .header_profile {
     padding: 17px;
-    
+
     display: flex;
     flex-direction: column;
     /* gap: 20px; */
@@ -98,6 +98,11 @@
     outline: none;
 }
 
+.search_all_users:focus {
+    outline: solid 3px #a5bdfa;
+    transition: all ease-in 100ms;
+}
+
 .loader_search {
     width: 20px;
     height: 20px;
@@ -113,26 +118,167 @@
 
 .show_results {
     display: block;
-    height: calc(100vh - (30px + 38px + 20px + 20px + 20px + 20px + 20px + 5px));
+    height: calc(100vh - (30px + 38px + 20px + 20px + 20px + 20px + 20px + 25px));
     transition: all ease-in-out 250ms;
     /* background: red; */
     opacity: 1;
+
+    display: flex;
+    flex-direction: column;
+    /* gap: 10px; */
+    margin: 20px 0 0 0;
+}
+
+.show_results .card_users:first-child {
+    border: none;
 }
 
 .card_users {
     display: flex;
     align-items: center;
     gap: 10px;
+    padding: 5px;
+    border-top: 1px solid #f8f8f8;
+    /* border-radius: 2; */
+}
+
+.card_users:hover {
+    cursor: pointer;
+    background: #f8f8f8;
+    transition: all ease 500ms;
 }
 
 .image_profile_search_user {
     width: 40px;
+    height: 40px;
     border-radius: 100%;
+    object-fit: cover;
 }
+
+.username_profile_search_user {
+    color: #727272;
+}
+
+.search_more_people {
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+/* Button */
+
+.btn_search_people {
+    appearance: none;
+    background-color: transparent;
+    border: 3px solid #4f7ef5;
+    border-radius: 15px;
+    box-sizing: border-box;
+    color: #3B3B3B;
+    cursor: pointer;
+    display: inline-block;
+    /* font-family: Roobert,-apple-system,BlinkMacSystemFont,"Segoe UI",Helvetica,Arial,sans-serif,"Apple Color Emoji","Segoe UI Emoji","Segoe UI Symbol"; */
+    font-size: 16px;
+    font-weight: 600;
+    line-height: normal;
+    margin: 0;
+    min-height: 60px;
+    min-width: 0;
+    outline: none;
+    padding: 16px 24px;
+    text-align: center;
+    text-decoration: none;
+    transition: all 300ms cubic-bezier(.23, 1, 0.32, 1);
+    user-select: none;
+    -webkit-user-select: none;
+    touch-action: manipulation;
+    /* width: 100%; */
+    will-change: transform;
+    color: #4f7ef5;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 10px;
+}
+
+.btn_search_people:disabled {
+    pointer-events: none;
+}
+
+.btn_search_people:hover {
+    color: #fff;
+    background-color: #4f7ef5;
+    box-shadow: rgba(0, 0, 0, 0.25) 0 8px 15px;
+    /* transform: translateY(-2px); */
+}
+
+.btn_search_people:hover > .btn_search_icon {
+    fill: #fff;
+    transition: all 300ms cubic-bezier(.23, 1, 0.32, 1);
+}
+
+.btn_search_people:active {
+    box-shadow: none;
+    transform: translateY(0);
+}
+
+.icon_add_people {
+    width: 20px;
+    fill: #4f7ef5;
+}
+
+.btn_search_icon {
+    width: 20px;
+    fill: #4f7ef5;
+}
+
+
+
+
+/* Button */
+
+
+
+.users_not_found {
+    flex: 1 1 auto;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.info_users_not_found {
+    color: #d4d4d4;
+    font-size: 20px;
+    font-weight: 700;
+}
+
 
 /* Chat */
 
+.brefore_sending_message {
+    flex: 1 1 auto;
+
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+    align-items: center;
+    padding: 0 0 20px 0;
+}
+
+.title_before_sending {
+    color: #858585;
+    font-size: 20px;
+    font-weight: 700;
+}
+
+.message_before_sending {
+    color: #858585;
+    font-size: 15px;
+}
+
 .my_chats {
+    flex: 1 1 auto;
     display: flex;
     flex-direction: column;
     gap: 12px;
@@ -265,7 +411,7 @@
 .icon_sendmessage {
     width: 20px;
     fill: #FFFF;
-} 
+}
 
 .information_app {
     width: 100%;
@@ -296,4 +442,3 @@
     color: #9e9e9e;
     font-size: 25px;
 }
-

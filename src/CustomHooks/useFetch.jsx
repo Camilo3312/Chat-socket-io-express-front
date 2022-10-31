@@ -22,8 +22,9 @@ export const useFetch = (url = null) => {
 
     }, [])
 
-    const get = async (url_) => {    
+    const get = async (url_) => {   
         setLoading(true) 
+        
         const response = await axios.get(url_)
             .then(response => {
                 // console.log(response.data)

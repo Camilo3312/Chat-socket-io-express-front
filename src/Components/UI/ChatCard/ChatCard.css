@@ -106,3 +106,14 @@
     white-space: nowrap;
     text-overflow: ellipsis;
 }
+
+
+.new_message {
+    font-size: 12px;
+    color: red;
+}
+
+.new_message_ {
+    font-weight: 600;
+    color: #c8cddb;
+}
