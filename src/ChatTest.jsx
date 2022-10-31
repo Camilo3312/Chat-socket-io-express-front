@@ -244,42 +244,41 @@ export const ChatTest = () => {
 
                             <form onSubmit={e => {
                                 e.preventDefault()
-                                encrypts(message)
-                                // if (!currentChat.id_room) {
+                                if (!currentChat.id_room) {
 
-                                //     update({ of_id_user: data.id_user, for_id_user: currentChat.id_user })
-                                //         .then(response => {
-                                //             // console.log('Termino!');
-                                //             // console.log(response[0]);
+                                    update({ of_id_user: data.id_user, for_id_user: currentChat.id_user })
+                                        .then(response => {
+                                            // console.log('Termino!');
+                                            // console.log(response[0]);
                                             
-                                //             setMessages([...messages, {
-                                //                 message: message,
-                                //                 date_message: getDate(),
-                                //                 id_message: null,
-                                //                 id_user: data.id_user,
-                                //             }])
+                                            setMessages([...messages, {
+                                                message: message,
+                                                date_message: getDate(),
+                                                id_message: null,
+                                                id_user: data.id_user,
+                                            }])
 
-                                //             sendMessage(message, getDate(), response[0].id_room)
+                                            sendMessage(message, getDate(), response[0].id_room)
                                             
-                                //             roomConnect(response[0].id_room)
+                                            roomConnect(response[0].id_room)
                                             
-                                //             setCurrentChat({ ...currentChat, id_room: response[0].id_room })
+                                            setCurrentChat({ ...currentChat, id_room: response[0].id_room })
 
-                                //             setMessage('')
-                                //         })
+                                            setMessage('')
+                                        })
 
-                                // } else {
-                                //     console.log('Si hay sala');
+                                } else {
+                                    console.log('Si hay sala');
 
-                                //     sendMessage(message, getDate(), currentChat.id_room)
-                                //     setMessages([...messages, {
-                                //         message: message,
-                                //         date_message: getDate(),
-                                //         id_message: null,
-                                //         id_user: data.id_user,
-                                //     }])
-                                //     setMessage('')
-                                // }
+                                    sendMessage(message, getDate(), currentChat.id_room)
+                                    setMessages([...messages, {
+                                        message: message,
+                                        date_message: getDate(),
+                                        id_message: null,
+                                        id_user: data.id_user,
+                                    }])
+                                    setMessage('')
+                                }
 
                             }} className='form_send_message'>
                                 <input className='input_chat' type='text' placeholder='Message...' onChange={e => {
